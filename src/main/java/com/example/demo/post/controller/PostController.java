@@ -42,4 +42,10 @@ public class PostController {
         postService.deletePost(postId, author);
         return ApiResponse.ok();
     }
+
+    @GetMapping("/{postId}")
+    public ApiResponse<PostResponseDto> getPostById(@PathVariable Long postId) {
+        PostResponseDto post = postService.getPostById(postId);
+        return ApiResponse.ok(post);
+    }
 }

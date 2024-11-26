@@ -116,5 +116,13 @@ public class PostService {
         postRepository.delete(post);
     }
 
+    @Transactional(readOnly = true)
+    public PostResponseDto getPostById(Long postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new BusinessException(ApiStatus.POST_NOT_FOUND));
+        return new PostResponseDto(post);
+    }
+
+
 
 }
